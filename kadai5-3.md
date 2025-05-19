@@ -9,7 +9,7 @@
   * ipify:'https://api.ipify.org'
   * ipapi:'https://ipapi.co'
 * エンドポイントと機能
-  *　CSR (Client side rendering) でユーザのpublic ipを取得するAPI+グローバルIPから位置情報を返してくれるAPI
+  * CSR (Client side rendering) でユーザのpublic ipを取得するAPI+グローバルIPから位置情報を返してくれるAPI
 * リクエストとレスポンスのフォーマット
   * どちらもJSONで返してくれる
 ### Q3-3. 感想
