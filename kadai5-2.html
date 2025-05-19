@@ -4,7 +4,7 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">開けてびっくり玉手箱</h1>
     <form name="apiform"><p>
         何かのフォーム：<input type="text" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
@@ -13,9 +13,35 @@
     <div id="result"></div>
     <script>
         async function some_api(myForm) {
-            // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
-            document.apiform.reset();
+		
+			if(myForm.form_data.value != "わっぱーわっぱー")
+			{
+				alert("ネットを繋いでわっぱーわっぱーと入力してみましょう");
+				return;
+			}
+		
+			const API_URL = 'https://api.ipify.org/?format=json';
+			const res = await fetch(API_URL);
+			const data = await res.json();
+			
+			console.log(data.ip);
+			
+			const API2_URL = "https://ipapi.co/"+data.ip+"/json/";
+			
+			console.log(API2_URL);
+			
+			fetch(API2_URL)
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					const ip = `${data.ip}`;
+					const country = `${data.country_name} ${data.region} ${data.city}`;
+					document.getElementById("result").innerHTML = "you live in "+country+"<br>"+"your ip is "+ip+"<br>";
+				})
+				
+
+			document.apiform.reset();
         }
     </script>
 </body>
